@@ -1,0 +1,18 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container my-5">
+  <% if (locals.blogTitles && locals.blogTitles.length > 0) { %>
+    <h1 class="fs-1 my-5">Blogs</h1>
+    <ul class="list-unstyled row row-cols-1 row-cols-xl-4 g-4 d-flex justify-content-between">
+      <% locals.blogTitles.forEach((blog) => { %>
+        <li class="mb-2 fs-4 card p-3 shadow-sm col mx-1 d-flex justify-content-center align-items-center">
+          <a class="text-decoration-none text-muted" href="/blogs/<%= blog.id %>"><%= blog.title %></a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No blogs available.</p>
+  <% } %>
+</div>
+
+<%- include('partials/footer.ejs') %>

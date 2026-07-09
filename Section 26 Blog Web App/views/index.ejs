@@ -1,0 +1,27 @@
+<%- include('partials/header.ejs') %>
+
+<!-- Hero -->
+<div class="p-5 mb-4 rounded-3 hero">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Welcome to the Central Blog Exchange</h1>
+    <p class="col-md-8 fs-4">
+      I lied, this is neither central nor an exchange, this is purely for single use and held together by duct-tape and prayers. Enjoy :)
+    </p>
+    <button
+      class="btn btn-primary btn-lg"
+      type="button"
+      onclick="window.location.href = '/create_blog'"
+    >
+      Create Blog
+    </button>
+  </div>
+</div>
+<%- include('partials/latest_blogs.ejs') %>
+
+<!-- Number of blogs available -->
+<p class="text-center mt-2">
+  <strong><%= locals.latestBlogs ? locals.latestBlogs.length : 0 %></strong>
+  blogs available
+</p>
+
+<%- include('partials/footer.ejs') %>

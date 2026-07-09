@@ -1,0 +1,16 @@
+{
+  "name": "blog-web-app",
+  "version": "1.0.0",
+  "description": "A package for the function of the blog web app capstone project of Angela Yu's course: The Complete Full-Stack Web Development Bootcamp",
+  "type": "module",
+  "main": "index.js",
+  "license": "ISC",
+  "author": "George Bahij",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  }
+}

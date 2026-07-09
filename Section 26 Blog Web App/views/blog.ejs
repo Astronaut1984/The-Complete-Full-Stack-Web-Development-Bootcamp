@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+
+<div class="container my-5" id="options">
+    <!-- Options, including edit and delete blog -->
+    <% if (locals.blog) { %>
+        <div class="d-flex justify-content-end mb-3">
+            <a href="/edit_blog/<%= locals.id %>" class="btn btn-primary me-2">Edit</a>
+            <form action="/delete_blog/<%= locals.id %>" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this blog?');">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    <% } %>
+</div>
+
+<div class="container">
+    <h1 class="mt-5 mx-auto text-center">
+        <% if (locals.blog) { %>
+            <%= locals.blog.title %>
+        <% } %>
+    </h1>
+    
+    <p class="fs-3">
+        <% if (locals.blog) { %>
+            <%= locals.blog.content %>
+        <% } %>
+    </p>
+</div>
+
+<%- include('partials/footer') %>
