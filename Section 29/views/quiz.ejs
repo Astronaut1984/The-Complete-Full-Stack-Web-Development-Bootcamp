@@ -1,0 +1,10 @@
+<%- include('partials/header.ejs') %>
+<div class="container my-5">
+    <ul class="list-unstyled">
+        <% for (const question of quizData.results) {%>
+            <%-include('partials/question.ejs', {question: question})%>
+        <%}%>
+    </ul>
+</div>
+
+<%- include('partials/footer.ejs') %>

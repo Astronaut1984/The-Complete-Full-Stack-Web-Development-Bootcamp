@@ -1,0 +1,43 @@
+<!--
+        {
+            "type": "boolean",
+            "difficulty": "medium",
+            "category": "General Knowledge",
+            "question": "The scientific name for the Southern Lights is Aurora Australis?",
+            "correct_answer": "True",
+            "incorrect_answers": [
+                "False"
+            ]
+        },
+-->
+<li class="mb-3">
+  <div class="card p-3 container">
+    <div class="row mb-3">
+      <h1 class="col-lg-8"><%-question.question%></h1>
+      <div class="col-lg-4 d-inline-block">
+        <p class="badge rounded-pill bg-primary text-light">
+          <%-question.difficulty%>
+        </p>
+        <p class="badge rounded-pill bg-primary text-light">
+          <%-question.category%>
+        </p>
+      </div>
+    </div>
+    <div class="row gap-2 justify-content-center">
+      <button
+        value="True"
+        class="col-6 btn btn-outline-primary w-25"
+        onclick="checkAnswer(this, '<%=question.correct_answer%>')"
+      >
+        True
+      </button>
+      <button
+        value="False"
+        class="col-6 btn btn-outline-primary w-25"
+        onclick="checkAnswer(this, '<%=question.correct_answer%>')"
+      >
+        False
+      </button>
+    </div>
+  </div>
+</li>
