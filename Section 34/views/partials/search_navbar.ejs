@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img
+        src="/images/book.svg"
+        alt="Logo"
+        width="30"
+        height="24"
+        class="d-inline-block align-text-top text-body"
+      />
+      Book Notes
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSearch"
+      aria-controls="navbarSearch"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSearch">
+      <form
+        class="d-flex w-100 w-lg-auto search-container"
+        method="get"
+        action="/search"
+        role="search"
+      >
+        <div class="input-group w-100 position-relative">
+          <input
+            type="text"
+            name="search"
+            id="searchInput"
+            class="form-control"
+            autocomplete="off"
+            placeholder="Search books"
+            aria-label="Search books"
+          />
+          <ul id="dropdownList" class="search-dropdown list-unstyled mb-0"></ul>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

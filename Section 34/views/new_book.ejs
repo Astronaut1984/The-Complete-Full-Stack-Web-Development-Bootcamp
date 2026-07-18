@@ -1,0 +1,48 @@
+<!-- New Book That I read and want to review -->
+<%- include ('partials/header.ejs', {new: true}) %>
+
+    <!-- Form -->
+    <div class="container my-5 border border-2 border-secondary rounded p-4 gap-md-3">
+        <h3>New Book Review</h3>
+        <div class="row">
+            <div class="card text-center p-1 col-md-4 align-items-center">
+                <img class="w-50 rounded"
+                    src="<%= locals.coverSrc ? locals.coverSrc : 'https://placehold.co/350x500?text=Search+For+A+Book' %>"
+                    alt="Title" />
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <%= locals.title ? locals.title : 'Title' %>
+                    </h4>
+                    <div class="d-flex justify-content-center container gap-3">
+                        <% if (locals.author) { %>
+                            <p class="card-subtitle">
+                                <%= locals.author %>
+                            </p>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- Main content area with my thoughts on book -->
+            <form class="col-md-8 px-4" action="/add-rating" method="post">
+                <input type="hidden" value="<%= locals.title%>" name="title">
+                <input type="hidden" value="<%= locals.author%>" name="author">
+                <input type="hidden" value="<%= locals.coverSrc%>" name="coverSrc">
+                <input type="hidden" value="0" name="rating" class="review-rating-value" id="rating-value">
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" placeholder="leave a review" id="bookReview"
+                        style="height: 200px" name="review"></textarea>
+                    <label for="bookReview">My Review</label>
+                </div>
+                <div class="star-rating mb-3">
+                    <input type="radio" class="input-rating" value="1"><i></i>
+                    <input type="radio" class="input-rating" value="2"><i></i>
+                    <input type="radio" class="input-rating" value="3"><i></i>
+                    <input type="radio" class="input-rating" value="4"><i></i>
+                    <input type="radio" class="input-rating" value="5"><i></i>
+                </div>
+                <button type="submit" class="btn btn-outline-primary px-5 mb-3">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include ('partials/footer.ejs') %>

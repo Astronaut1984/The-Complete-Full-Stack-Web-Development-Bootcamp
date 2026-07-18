@@ -1,0 +1,97 @@
+<div
+    class="container my-5 border border-2 border-secondary rounded p-4 review-card <%= (locals.edit || book.edit) ? 'is-editing' : '' %>">
+    <!-- Side bar with book info -->
+    <div class="row">
+            <div class="card text-center p-1 col-md-4 align-items-center">
+                <img class="w-50 rounded" src="<%= book.coversrc %>" alt="Title" />
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <%= book.title %>
+                    </h4>
+                    <div class="d-flex justify-content-center container gap-3">
+                        <% if (book.author) { %>
+                            <p class="card-subtitle">
+                                <%= book.author %>
+                            </p>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- Main content area with my thoughts on book -->
+            <div class="col-md-8 px-4 position-relative">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="mb-0">Review</h1>
+                    <button type="button" class="btn btn-outline-primary btn-sm review-toggle-btn">Edit</button>
+                </div>
+
+                <div class="review-preview">
+                    <p>
+                        <%= book.review %>
+                    </p>
+                    <div class="star-rating mb-3">
+                        <input type="radio" disabled <% if (book.rating>= 1) { %> checked <% } %> value="1"><i></i>
+                            <input type="radio" disabled <% if (book.rating>= 2) { %> checked <% } %> value="2"><i></i>
+                                <input type="radio" disabled <% if (book.rating>= 3) { %> checked <% } %>
+                                    value="3"><i></i>
+                                    <input type="radio" disabled <% if (book.rating>= 4) { %> checked <% } %>
+                                        value="4"><i></i>
+                                        <input type="radio" disabled <% if (book.rating>= 5) { %> checked <% } %>
+                                            value="5"><i></i>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 review-actions">
+                        <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal-<%=book.id%>">Delete</button>
+                    </div>
+                </div>
+
+                <form class="review-editor" action="/edit/<%= book.id %>" method="post">
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Leave a review" id="review-<%= book.id %>"
+                            style="height: 200px" name="review"><%= book.review %></textarea>
+                        <label for="review-<%= book.id %>">My Review</label>
+                    </div>
+                    <input type="hidden" value="<%= book.rating || 0 %>" name="rating" class="review-rating-value"
+                        id="rating-value-<%= book.id %>">
+                    <div class="star-rating mb-3">
+                        <input type="radio" class="input-rating" value="1" <% if (book.rating>= 1) { %> checked <% } %>
+                            ><i></i>
+                            <input type="radio" class="input-rating" value="2" <% if (book.rating>= 2) { %> checked <% }
+                                %>
+                                ><i></i>
+                                <input type="radio" class="input-rating" value="3" <% if (book.rating>= 3) { %> checked
+                                <% } %>><i></i>
+                                    <input type="radio" class="input-rating" value="4" <% if (book.rating>= 4) { %>
+                                    checked
+                                    <% } %>><i></i>
+                                        <input type="radio" class="input-rating" value="5" <% if (book.rating>= 5) { %>
+                                        checked <% } %>><i></i>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                        <button type="button" class="btn btn-outline-secondary review-cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal-<%= book.id %>" tabindex="-1" aria-labelledby="deleteModalLabel-<%= book.id %>"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModalLabel-<%= book.id %>">Delete Book?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this book? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="/delete/<%= book.id %>" method="post">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
